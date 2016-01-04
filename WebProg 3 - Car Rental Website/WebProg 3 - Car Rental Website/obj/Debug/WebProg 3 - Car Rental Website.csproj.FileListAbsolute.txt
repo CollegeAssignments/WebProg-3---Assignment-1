@@ -31,3 +31,7 @@ D:\Programming\dotNet\WebProg-3---Assignment-1\WebProg 3 - Car Rental Website\We
 D:\Programming\dotNet\WebProg-3---Assignment-1\WebProg 3 - Car Rental Website\WebProg 3 - Car Rental Website\obj\Debug\WebProg 3 - Car Rental Website.csprojResolveAssemblyReference.cache
 D:\Programming\dotNet\WebProg-3---Assignment-1\WebProg 3 - Car Rental Website\WebProg 3 - Car Rental Website\obj\Debug\WebProg 3 - Car Rental Website.dll
 D:\Programming\dotNet\WebProg-3---Assignment-1\WebProg 3 - Car Rental Website\WebProg 3 - Car Rental Website\obj\Debug\WebProg 3 - Car Rental Website.pdb
+D:\Programming\dotNet\WebProg-3---Assignment-1\WebProg 3 - Car Rental Website\WebProg 3 - Car Rental Website\bin\EntityFramework.dll
+D:\Programming\dotNet\WebProg-3---Assignment-1\WebProg 3 - Car Rental Website\WebProg 3 - Car Rental Website\bin\EntityFramework.SqlServer.dll
+D:\Programming\dotNet\WebProg-3---Assignment-1\WebProg 3 - Car Rental Website\WebProg 3 - Car Rental Website\bin\EntityFramework.xml
+D:\Programming\dotNet\WebProg-3---Assignment-1\WebProg 3 - Car Rental Website\WebProg 3 - Car Rental Website\bin\EntityFramework.SqlServer.xml

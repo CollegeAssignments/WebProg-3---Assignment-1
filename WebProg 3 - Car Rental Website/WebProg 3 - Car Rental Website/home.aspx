@@ -6,5 +6,6 @@
         <h1 class="">BoilerPlate</h1>
         <span style="font-size:1.5em;" class="glyphicon glyphicon-home" aria-hidden="true"></span>
         <h3>Home Page</h3>
+        <asp:Label ID="tbxTest" runat="server"></asp:Label>
     </div>
 </asp:Content>

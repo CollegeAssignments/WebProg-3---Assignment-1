@@ -9,3 +9,9 @@ Your website design skills and your own imagionation are very important too.
 * Brian Geraghty
 * Fergal Gaffney
 * Artur Kadziel
+
+## Dependencies
+
+[SQL 2014 Express](https://www.microsoft.com/en-ie/download/details.aspx?id=42299)
+
+If you have problems connecting to the database, open a command prompt and run `sqllocaldb create "v12.0"`
