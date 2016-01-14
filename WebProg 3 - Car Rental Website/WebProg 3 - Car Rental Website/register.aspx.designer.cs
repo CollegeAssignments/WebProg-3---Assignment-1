@@ -119,5 +119,14 @@ namespace WebProg_3___Car_Rental_Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbxConfirmPassword;
+        
+        /// <summary>
+        /// btnSubmitReg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSubmitReg;
     }
 }

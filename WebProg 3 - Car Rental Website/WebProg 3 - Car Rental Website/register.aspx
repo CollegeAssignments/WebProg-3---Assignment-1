@@ -73,6 +73,9 @@
                 <asp:Label runat="server">Confirm Password</asp:Label>
                 <asp:TextBox ID="tbxConfirmPassword" CssClass="form-control" runat="server"></asp:TextBox>
             </div>
+            <div class="input-group col-xs-12 col-md-10 col-md-offset-1 space-inputs">
+                <asp:Button ID="btnSubmitReg" runat="server" OnClick="btnSubmitReg_Click"/>
+            </div>
         </div>
     </div>
 
