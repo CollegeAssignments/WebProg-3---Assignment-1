@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bookings">
           <Key>
             <PropertyRef Name="BookingID" />
@@ -32,7 +32,7 @@
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nchar" MaxLength="30" />
+          <Property Name="UserName" Type="nchar" MaxLength="15" />
           <Property Name="FName" Type="nchar" MaxLength="20" />
           <Property Name="LName" Type="nchar" MaxLength="20" />
           <Property Name="Address" Type="nchar" MaxLength="50" />
@@ -40,9 +40,10 @@
           <Property Name="Email" Type="nchar" MaxLength="30" />
           <Property Name="Phone" Type="nchar" MaxLength="15" />
           <Property Name="UserType" Type="smallint" />
-          <Property Name="Password" Type="char" MaxLength="32" />
+          <Property Name="Password" Type="nchar" MaxLength="32" />
           <Property Name="DateReg" Type="date" />
           <Property Name="LicenseNum" Type="char" MaxLength="20" />
+          <Property Name="salt" Type="nchar" MaxLength="32" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -55,7 +56,7 @@
           <Key>
             <PropertyRef Name="VehicleID" />
           </Key>
-          <Property Name="VehicleID" Type="int" Nullable="false" />
+          <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Brand" Type="char" MaxLength="20" />
           <Property Name="Model" Type="nchar" MaxLength="20" />
           <Property Name="Power" Type="int" />
@@ -136,8 +137,7 @@
             <End Role="User" EntitySet="User" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -172,7 +172,7 @@
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
           <Property Name="FName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="LName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
@@ -180,11 +180,12 @@
           <Property Name="Email" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
           <Property Name="UserType" Type="Int16" />
-          <Property Name="Password" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
           <Property Name="DateReg" Type="DateTime" Precision="0" />
           <Property Name="LicenseNum" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Bookings_User" FromRole="User" ToRole="Bookings" />
           <NavigationProperty Name="UserType1" Relationship="Self.FK_User_UserType" FromRole="User" ToRole="UserType" />
+          <Property Name="salt" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -313,6 +314,7 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="Model.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="salt" ColumnName="salt" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="FName" ColumnName="FName" />

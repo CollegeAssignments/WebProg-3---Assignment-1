@@ -31,7 +31,7 @@
       <PropertyRef Name="UserID" />
     </Key>
     <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+    <Property Name="UserName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
     <Property Name="FName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="LName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
@@ -39,11 +39,12 @@
     <Property Name="Email" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
     <Property Name="Phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
     <Property Name="UserType" Type="Int16" />
-    <Property Name="Password" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
     <Property Name="DateReg" Type="DateTime" Precision="0" />
     <Property Name="LicenseNum" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
     <NavigationProperty Name="Bookings" Relationship="Self.FK_Bookings_User" FromRole="User" ToRole="Bookings" />
     <NavigationProperty Name="UserType1" Relationship="Self.FK_User_UserType" FromRole="User" ToRole="UserType" />
+    <Property Name="salt" Type="String" MaxLength="32" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="UserType">
     <Key>
