@@ -11,10 +11,15 @@ namespace WebProg_3___Car_Rental_Website
 {
     public partial class register : System.Web.UI.Page
     {
+        //Connect to database
+        Entities db = new Entities();
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             
         }
+
 
         protected void btnSubmitReg_Click(object sender, EventArgs e)
         {
@@ -29,18 +34,23 @@ namespace WebProg_3___Car_Rental_Website
             string email = tbxEmail.Text;
 
             string password = tbxPassword.Text;
-            string confirmPassword = tbxConfirmPassword.Text;
 
+            //Store salt & hashed password
             string salt = GenerateSalt();
             string passHashed = HashMD5(password+salt);
+
+            WriteToDB(fName, lName, pNumber, dOB, address, licenseNum, userName, email, salt, passHashed);
 
         }
 
 
         //Generate a random alphnumeric salt
         //Source: http://stackoverflow.com/questions/31957255/generating-a-random-number-in-c-sharp-with-alpha-numeric-values
-        public static string GenerateSalt(int size = 8, string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
+        public static string GenerateSalt()
         {
+            int size = 8;
+            string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+
             using (var crypto = new RNGCryptoServiceProvider())
             {
                 var data = new byte[size];
@@ -83,6 +93,7 @@ namespace WebProg_3___Car_Rental_Website
             }
         }
 
+
         //Generates MD5 hashed password
         //
         //Accepts one string [password + salt]
@@ -93,6 +104,34 @@ namespace WebProg_3___Car_Rental_Website
             byte[] bytes = md5.ComputeHash(Encoding.Unicode.GetBytes(input));
             string result = BitConverter.ToString(bytes).Replace("-", String.Empty);
             return result;
+        }
+        
+
+        void WriteToDB(string fName,string lname,string pNumber,DateTime dob,string address,string licenseNum,string userName,string email,string salt, string hashedPass)
+        {
+            User newUser = new User
+            {
+                FName = fName,
+                LName = lname,
+                Phone = pNumber,
+                DOB = dob,
+                Address = address,
+                LicenseNum = licenseNum,
+                UserName = userName,
+                Email = email,
+                salt = salt,
+                Password = hashedPass
+            };
+
+            try
+            {
+                db.Users.Add(newUser);
+                db.SaveChanges();
+            }
+            catch
+            {
+
+            }
         }
     }
 }
