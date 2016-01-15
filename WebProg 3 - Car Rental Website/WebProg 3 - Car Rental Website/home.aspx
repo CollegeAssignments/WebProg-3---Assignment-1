@@ -12,7 +12,7 @@
             <asp:TextBox ID="tbxPickUpDate" CssClass="form-control space-inputs"  runat="server" />
             <asp:Label runat="server">Drop Off Date</asp:Label>
             <asp:TextBox ID="tbxDropOffDate" CssClass="form-control space-inputs"  runat="server" />
-            <asp:Button ID="btnFindCars" Text="Find Cars" CssClass="btn btn-success pull-right space-inputs" runat="server" />
+            <asp:Button ID="btnFindCars" Text="Find Cars" CssClass="btn btn-success pull-right space-inputs" OnClick="btnFindCars_Click" runat="server" />
         </div>
     </div>
 

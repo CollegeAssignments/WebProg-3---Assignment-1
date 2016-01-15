@@ -104,6 +104,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="carList.aspx" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -201,6 +202,13 @@
     </Compile>
     <Compile Include="Car.cs">
       <DependentUpon>mainDbEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="carList.aspx.cs">
+      <DependentUpon>carList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="carList.aspx.designer.cs">
+      <DependentUpon>carList.aspx</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>

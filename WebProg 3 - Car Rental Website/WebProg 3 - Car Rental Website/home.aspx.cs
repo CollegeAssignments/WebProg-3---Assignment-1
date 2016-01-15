@@ -29,5 +29,10 @@ namespace WebProg_3___Car_Rental_Website
             }
             
         }
+
+        protected void btnFindCars_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("carList.aspx?PickUp=" + tbxPickUpDate.Text + "&DropOff=" + tbxDropOffDate.Text);
+        }
     }
 }
