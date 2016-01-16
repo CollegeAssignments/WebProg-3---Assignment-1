@@ -12,24 +12,20 @@ namespace WebProg_3___Car_Rental_Website
     using System;
     using System.Collections.Generic;
     
-    public partial class Car
+    public partial class BrandModel
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Car()
+        public BrandModel()
         {
-            this.Bookings = new HashSet<Booking>();
+            this.Vehicles = new HashSet<Vehicle>();
         }
     
-        public int CarId { get; set; }
-        public Nullable<int> VehicleTypeID { get; set; }
-        public string RegNum { get; set; }
-        public Nullable<int> Millage { get; set; }
-        public Nullable<decimal> Price { get; set; }
-        public string Image { get; set; }
-        public Nullable<int> OwnerID { get; set; }
+        public int ModelID { get; set; }
+        public int BrandID { get; set; }
+        public string ModelName { get; set; }
     
+        public virtual CarBrand CarBrand { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Booking> Bookings { get; set; }
-        public virtual Vehicle Vehicle { get; set; }
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }

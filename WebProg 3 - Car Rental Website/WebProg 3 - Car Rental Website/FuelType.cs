@@ -12,15 +12,18 @@ namespace WebProg_3___Car_Rental_Website
     using System;
     using System.Collections.Generic;
     
-    public partial class Booking
+    public partial class FuelType
     {
-        public int BookingID { get; set; }
-        public int UserID { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
-        public int VehicleID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public FuelType()
+        {
+            this.Vehicles = new HashSet<Vehicle>();
+        }
     
-        public virtual User User { get; set; }
-        public virtual Vehicle Vehicle { get; set; }
+        public int FuelID { get; set; }
+        public string FuelType1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }

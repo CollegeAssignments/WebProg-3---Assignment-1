@@ -200,7 +200,10 @@
     <Compile Include="Booking.cs">
       <DependentUpon>mainDbEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="Car.cs">
+    <Compile Include="BrandModel.cs">
+      <DependentUpon>mainDbEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CarBrand.cs">
       <DependentUpon>mainDbEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="carList.aspx.cs">
@@ -209,6 +212,12 @@
     </Compile>
     <Compile Include="carList.aspx.designer.cs">
       <DependentUpon>carList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FuelType.cs">
+      <DependentUpon>mainDbEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GearboxType.cs">
+      <DependentUpon>mainDbEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="home.aspx.cs">
       <DependentUpon>home.aspx</DependentUpon>

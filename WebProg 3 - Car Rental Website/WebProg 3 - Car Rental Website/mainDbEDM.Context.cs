@@ -26,7 +26,10 @@ namespace WebProg_3___Car_Rental_Website
         }
     
         public virtual DbSet<Booking> Bookings { get; set; }
-        public virtual DbSet<Car> Cars { get; set; }
+        public virtual DbSet<BrandModel> BrandModels { get; set; }
+        public virtual DbSet<CarBrand> CarBrands { get; set; }
+        public virtual DbSet<FuelType> FuelTypes { get; set; }
+        public virtual DbSet<GearboxType> GearboxTypes { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserType> UserTypes { get; set; }
         public virtual DbSet<Vehicle> Vehicles { get; set; }
