@@ -203,6 +203,7 @@
     <Compile Include="BrandModel.cs">
       <DependentUpon>mainDbEDM.tt</DependentUpon>
     </Compile>
+    <Compile Include="Car.cs" />
     <Compile Include="CarBrand.cs">
       <DependentUpon>mainDbEDM.tt</DependentUpon>
     </Compile>

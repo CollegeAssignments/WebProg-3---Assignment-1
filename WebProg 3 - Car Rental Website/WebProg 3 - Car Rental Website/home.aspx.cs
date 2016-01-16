@@ -15,11 +15,13 @@ namespace WebProg_3___Car_Rental_Website
         protected void Page_Load(object sender, EventArgs e)
         {
             //Test query -- making sure all is wired up correctly
-            var query = from Vehicle in mainDB.Vehicles
+            var query = from vehicle in mainDB.Vehicles
+                        join brand in mainDB.CarBrands on vehicle.BrandID equals brand.BrandID
+                        join model in mainDB.BrandModels on vehicle.ModelID equals model.ModelID
                         select new
                         {
-                            brand = Vehicle.BrandID,
-                            model = Vehicle.ModelID
+                            brand = brand.BrandName,
+                            model = model.ModelName
                         };
 
             //Display sample data to label on home page
