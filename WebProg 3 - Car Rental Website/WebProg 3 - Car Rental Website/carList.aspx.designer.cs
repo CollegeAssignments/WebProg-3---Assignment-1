@@ -13,21 +13,12 @@ namespace WebProg_3___Car_Rental_Website {
     public partial class carList {
         
         /// <summary>
-        /// lblPickUp control.
+        /// carListMain control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPickUp;
-        
-        /// <summary>
-        /// lblDropOff control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDropOff;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl carListMain;
     }
 }

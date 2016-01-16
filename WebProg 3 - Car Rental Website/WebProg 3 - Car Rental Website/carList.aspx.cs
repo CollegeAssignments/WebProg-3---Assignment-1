@@ -9,14 +9,80 @@ namespace WebProg_3___Car_Rental_Website
 {
     public partial class carList : System.Web.UI.Page
     {
+        public delegate void ListCarDelegate();
+
+        List<Car> cars = new List<Car>();
+
+        //Main connection string to database
+        Entities db = new Entities();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            string PickUpDate = Request.QueryString["PickUp"];
-            string DropOffDate = Request.QueryString["DropOff"];
+            if (Request.QueryString["PickUp"] != null && Request.QueryString["DropOff"] != null)
+            {
+                string PickUpDate = Request.QueryString["PickUp"];
+                string DropOffDate = Request.QueryString["DropOff"];
 
-            lblPickUp.Text = PickUpDate;
-            lblDropOff.Text = DropOffDate;
+                //lblPickUp.Text = PickUpDate;
+                //lblDropOff.Text = DropOffDate;
 
+                ListCarDelegate del = new ListCarDelegate(RetrieveVehicleList);
+                del += new ListCarDelegate(DisplayVehicleList);
+
+                del();
+            }
+        }
+
+        private void RetrieveVehicleList()
+        {
+            var query = from vehicle in db.Vehicles
+                        join brand in db.CarBrands on vehicle.BrandID equals brand.BrandID
+                        join model in db.BrandModels on vehicle.ModelID equals model.ModelID
+                        join gearbox in db.GearboxTypes on vehicle.GearboxID equals gearbox.GearboxID
+                        join fuel in db.FuelTypes on vehicle.FuelID equals fuel.FuelID
+                        select new
+                        {
+                            brand = brand.BrandName,
+                            model = model.ModelName,
+                            gearbox = gearbox.GearboxType1,
+                            fuel = fuel.FuelType1,
+                            doors = vehicle.Doors,
+                            seats = vehicle.Seats,
+                            suitcases = vehicle.Suitcases,
+                            bags = vehicle.Bags,
+                            price = vehicle.Price,
+                            image = vehicle.Image
+                        };
+
+            foreach (var car in query)
+            {
+                Car newCar = new Car(car.brand, car.model, car.gearbox, car.fuel, car.doors, car.seats, car.suitcases, car.bags, car.price, car.image);
+                cars.Add(newCar);
+            }
+        }
+        private void DisplayVehicleList()
+        {
+            foreach (Car _car in cars)
+            {
+                carListMain.Controls.Add(new Literal() { Text = "<div class='panel panel-primary'><div class='panel-heading'>" 
+                                                                + _car.Brand + " " 
+                                                                + _car.Model 
+                                                                + "<span class='pull-right'>€"
+                                                                + _car.Price.ToString("F")
+                                                                + "</span></div><div class='panel-body'><div class='car-image col-xs-3'><img src='" 
+                                                                + _car.Image 
+                                                                + "'/></div><div class='car-detail col-xs-3'><i class='fa fa-users fa-2x'><span class='car-panel-text'>" 
+                                                                + _car.Seats
+                                                                + " Seats</span></i></div><div class='car-detail col-xs-3'><i class='fa fa-suitcase fa-2x'><span class='car-panel-text'>"
+                                                                + _car.Suitcases
+                                                                + " Suitcase(s) </span></i></div><div class='car-detail col-xs-3'><i class='fa fa-briefcase fa-2x'><span class='car-panel-text'>"
+                                                                + _car.Bags
+                                                                + " Bag(s)</span></i></div><div class='car-detail col-xs-3'><i class='fa fa-car fa-2x'><span class='car-panel-text'>"
+                                                                + _car.Doors 
+                                                                + " Doors</span></i></div><div class='car-detail col-xs-3'><i class='fa fa-cogs fa-2x'><span class='car-panel-text'>"
+                                                                + _car.Gearbox
+                                                                + "</span></i></div></div></div>" });
+            }
         }
     }
 }

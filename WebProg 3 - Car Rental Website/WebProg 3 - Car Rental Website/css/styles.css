@@ -1,4 +1,5 @@
 ﻿body {
+    font-family: 'Lato', sans-serif;
 }
 
 .main-reg-form{
@@ -14,4 +15,15 @@ footer{
     min-height:500px;
     width:100%;
     background-color:#e67e22;
+}
+
+.car-panel-text{
+    padding-left:5px;
+    font-family: 'Lato', sans-serif;
+    font-size:16px;
+}
+
+.car-detail{
+    margin:10px 0;
+    padding-left:35px;
 }

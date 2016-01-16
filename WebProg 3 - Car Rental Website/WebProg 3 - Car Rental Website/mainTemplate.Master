@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="Content/bootstrap-theme.min.css"/>
     <link rel="stylesheet" href="Content/themes/base/datepicker.css" />
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="Content/font-awesome.css" />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato' type='text/css' />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="scripts/bootstrap.js"></script>

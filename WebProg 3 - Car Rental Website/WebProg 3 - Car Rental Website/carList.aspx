@@ -2,7 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>CarList</h1>
-    <asp:Label ID="lblPickUp" runat="server" />
-    <asp:Label ID="lblDropOff" runat="server" />
+    <div class="container">
+        <div class="col-xs-12 col-md-4"></div>
+        <div id="carListMain" class="col-xs-12 col-md-8" runat="server"></div>
+    </div>
 </asp:Content>
