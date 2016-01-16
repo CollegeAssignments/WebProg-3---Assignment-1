@@ -14,18 +14,10 @@ namespace WebProg_3___Car_Rental_Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Test query -- making sure all is wired up correctly
-            var query = from car in mainDB.Vehicles
-                        select new
-                        {
-                            brand = car.Brand,
-                            model = car.Model
-                        };
-
-            //Display sample data to label on home page
-            foreach(var car in query)
+            if(Session != null)
             {
-                tbxTest.Text = car.brand.ToString() + " " + car.model.ToString();
+                string fName = (string)Session["fName"];
+                tbxTest.Text = fName;
             }
             
         }
