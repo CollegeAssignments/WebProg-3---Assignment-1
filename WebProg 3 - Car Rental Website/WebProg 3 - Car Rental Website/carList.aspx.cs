@@ -40,8 +40,10 @@ namespace WebProg_3___Car_Rental_Website
                         join model in db.BrandModels on vehicle.ModelID equals model.ModelID
                         join gearbox in db.GearboxTypes on vehicle.GearboxID equals gearbox.GearboxID
                         join fuel in db.FuelTypes on vehicle.FuelID equals fuel.FuelID
+                        orderby vehicle.Price ascending
                         select new
                         {
+                            id = vehicle.VehicleID,
                             brand = brand.BrandName,
                             model = model.ModelName,
                             gearbox = gearbox.GearboxType1,
@@ -56,7 +58,7 @@ namespace WebProg_3___Car_Rental_Website
 
             foreach (var car in query)
             {
-                Car newCar = new Car(car.brand, car.model, car.gearbox, car.fuel, car.doors, car.seats, car.suitcases, car.bags, car.price, car.image);
+                Car newCar = new Car(car.id, car.brand, car.model, car.gearbox, car.fuel, car.doors, car.seats, car.suitcases, car.bags, car.price, car.image);
                 cars.Add(newCar);
             }
         }
@@ -69,19 +71,22 @@ namespace WebProg_3___Car_Rental_Website
                                                                 + _car.Model 
                                                                 + "<span class='pull-right'>€"
                                                                 + _car.Price.ToString("F")
-                                                                + "</span></div><div class='panel-body'><div class='car-image col-xs-3'><img src='" 
+                                                                + "/day</span></div><div class='panel-body'><div class='car-image col-xs-12 col-md-3 text-center'><img src='" 
                                                                 + _car.Image 
-                                                                + "'/></div><div class='car-detail col-xs-3'><i class='fa fa-users fa-2x'><span class='car-panel-text'>" 
+                                                                + "'/></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-users fa-2x'><span class='car-panel-text'>"
                                                                 + _car.Seats
-                                                                + " Seats</span></i></div><div class='car-detail col-xs-3'><i class='fa fa-suitcase fa-2x'><span class='car-panel-text'>"
+                                                                + " Seats</span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-suitcase fa-2x'><span class='car-panel-text'>"
                                                                 + _car.Suitcases
-                                                                + " Suitcase(s) </span></i></div><div class='car-detail col-xs-3'><i class='fa fa-briefcase fa-2x'><span class='car-panel-text'>"
+                                                                + " Suitcase(s) </span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-briefcase fa-2x'><span class='car-panel-text'>"
                                                                 + _car.Bags
-                                                                + " Bag(s)</span></i></div><div class='car-detail col-xs-3'><i class='fa fa-car fa-2x'><span class='car-panel-text'>"
+                                                                + " Bag(s)</span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-car fa-2x'><span class='car-panel-text'>"
                                                                 + _car.Doors 
-                                                                + " Doors</span></i></div><div class='car-detail col-xs-3'><i class='fa fa-cogs fa-2x'><span class='car-panel-text'>"
+                                                                + " Door</span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-cogs fa-2x'><span class='car-panel-text'>"
                                                                 + _car.Gearbox
-                                                                + "</span></i></div></div></div>" });
+                                                                + "</span></i></div><div class='car-detail col-xs-12 col-md-3'><button id='"
+                                                                + _car.ID 
+                                                                + "' class='btn btn-success'>Book Me</button></div></div></div>"
+                });
             }
         }
     }

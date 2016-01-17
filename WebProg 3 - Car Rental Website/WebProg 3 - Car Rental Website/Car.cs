@@ -7,6 +7,7 @@ namespace WebProg_3___Car_Rental_Website
 {
     public class Car
     {
+        public int ID { get; set; }
         public string Brand { get; set; }
         public string Model { get; set; }
         public string Gearbox { get; set; }
@@ -18,8 +19,9 @@ namespace WebProg_3___Car_Rental_Website
         public decimal Price { get; set; }
         public string Image { get; set; }
 
-        public Car(string _brand, string _model, string _gearbox, string _fuel, int _doors, int _seats, int _suitcases, int _bags, decimal _price, string _image)
+        public Car(int _id, string _brand, string _model, string _gearbox, string _fuel, int _doors, int _seats, int _suitcases, int _bags, decimal _price, string _image)
         {
+            ID = _id;
             Brand = _brand;
             Model = _model;
             Gearbox = _gearbox;
