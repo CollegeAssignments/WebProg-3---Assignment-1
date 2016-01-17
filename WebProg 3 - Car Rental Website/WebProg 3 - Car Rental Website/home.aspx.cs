@@ -25,9 +25,10 @@ namespace WebProg_3___Car_Rental_Website
                         };
 
             //Display sample data to label on home page
-            foreach(var car in query)
+            if(Session != null)
             {
-                tbxTest.Text = car.brand.ToString() + " " + car.model.ToString();
+                string fName = (string)Session["fName"];
+                tbxTest.Text = fName;
             }
             
         }

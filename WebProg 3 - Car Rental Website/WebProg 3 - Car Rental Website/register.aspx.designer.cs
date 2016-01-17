@@ -22,6 +22,15 @@ namespace WebProg_3___Car_Rental_Website {
         protected global::System.Web.UI.WebControls.TextBox tbxFName;
         
         /// <summary>
+        /// rfvFName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFName;
+        
+        /// <summary>
         /// tbxLName control.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace WebProg_3___Car_Rental_Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbxLName;
+        
+        /// <summary>
+        /// rfvLName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvLName;
         
         /// <summary>
         /// tbxPhone control.
@@ -58,13 +76,31 @@ namespace WebProg_3___Car_Rental_Website {
         protected global::System.Web.UI.WebControls.TextBox tbxAddress1;
         
         /// <summary>
-        /// tbxAdress2 control.
+        /// rFVAddress1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbxAdress2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rFVAddress1;
+        
+        /// <summary>
+        /// tbxAddress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbxAddress2;
+        
+        /// <summary>
+        /// rFVAddress2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rFVAddress2;
         
         /// <summary>
         /// tbxAddressCountry control.
@@ -74,6 +110,15 @@ namespace WebProg_3___Car_Rental_Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbxAddressCountry;
+        
+        /// <summary>
+        /// rFVAddressCountry control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rFVAddressCountry;
         
         /// <summary>
         /// tbxLicenseNum control.
@@ -103,6 +148,24 @@ namespace WebProg_3___Car_Rental_Website {
         protected global::System.Web.UI.WebControls.TextBox tbxEmail;
         
         /// <summary>
+        /// rfvEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
+        
+        /// <summary>
+        /// revEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revEmail;
+        
+        /// <summary>
         /// tbxPassword control.
         /// </summary>
         /// <remarks>
@@ -128,5 +191,14 @@ namespace WebProg_3___Car_Rental_Website {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSubmitReg;
+        
+        /// <summary>
+        /// lblDbErrorNotice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDbErrorNotice;
     }
 }
