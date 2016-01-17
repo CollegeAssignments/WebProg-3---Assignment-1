@@ -42,14 +42,11 @@ namespace WebProg_3___Car_Rental_Website
                 string salt = GenerateSalt();
                 string passHashed = HashMD5(password + salt);
 
-                //Check if the email address already exists in the database
-                var queryUser = from users in db.Users
-                                where users.Email == email
-                                select 1;
+                bool emailCheck = CheckUserExists(email,userName);
 
-                if (queryUser.Count() > 0)
+                if (emailCheck == true)
                 {
-                    lblDbErrorNotice.Text = "Sorry. An account has already been registered with that email";
+                    lblDbErrorNotice.Text = "Sorry. An account already exists with that Username or Email.";
                 }
                 else
                 {
@@ -62,6 +59,32 @@ namespace WebProg_3___Car_Rental_Website
             {
                 lblDbErrorNotice.Text = "Internal Server Error. Error Message: " + ex.Message + ". Please Contact the Site Administrator.";
             }
+        }
+
+
+        //Check if Email or username already exists in Database
+        //Returns true if entry exists
+        bool CheckUserExists(string input, string userName)
+        {
+            bool check = false;
+            try
+            {
+                //Check if the email or username address already exists in the database
+                var queryUser = from users in db.Users
+                                where users.Email == input || users.UserName == userName
+                                select 1;
+
+                if(queryUser.Count() > 0)
+                {
+                    check = true;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return check;
         }
 
 

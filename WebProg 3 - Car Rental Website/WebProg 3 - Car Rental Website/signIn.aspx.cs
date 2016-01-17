@@ -64,6 +64,7 @@ namespace WebProg_3___Car_Rental_Website
                                             where user.UserName == userName
                                             select new
                                             {
+                                                userID = user.UserID,
                                                 fName = user.FName,
                                                 lName = user.LName,
                                                 address = user.Address,
@@ -77,6 +78,7 @@ namespace WebProg_3___Car_Rental_Website
                         //Store the logged in user in the current session
                         foreach (var u in fullUserInfo)
                         {
+                            Session.Add("userId", u.userID);
                             Session.Add("fName", u.fName);
                             Session.Add("lName", u.lName);
                             Session.Add("address", u.address);
