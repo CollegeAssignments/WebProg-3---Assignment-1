@@ -85,7 +85,7 @@ namespace WebProg_3___Car_Rental_Website
                                                                 + _car.Gearbox
                                                                 + "</span></i></div><div class='car-detail col-xs-12 col-md-3'><button id='"
                                                                 + _car.ID 
-                                                                + "' class='btn btn-success'>Book Me</button></div></div></div>"
+                                                                + "' class='btn btn-warning col-xs-12'>Book Me</button></div></div></div>"
                 });
             }
         }
