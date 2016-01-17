@@ -14,18 +14,18 @@
         <elementListCompartment Id="716e0291-0eb7-4cff-a540-3fde63b4e419" absoluteBounds="5.765, 2.335, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.75 : 2.64505126953125); (4.125 : 2.64505126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/CarRentalDataContext/UserLink/User_Booking" />
-      <nodes>
-        <classShapeMoniker Id="d7b90ef2-ab0f-4437-9298-204509e2ffc6" />
-        <classShapeMoniker Id="050f4fd1-be33-4f3b-a8b3-9d32c04c34a2" />
-      </nodes>
-    </associationConnector>
     <classShape Id="5600cd20-a7c4-4d35-a639-78ca9d3769a6" absoluteBounds="2.75, 4, 2, 2.3478011067708335">
       <DataClassMoniker Name="/CarRentalDataContext/DealLink" />
       <nestedChildShapes>
         <elementListCompartment Id="454d5b75-1dcf-424d-a0d6-29908e6ce38a" absoluteBounds="2.765, 4.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <associationConnector edgePoints="[(5.75 : 2.64505126953125); (4.125 : 2.64505126953125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/CarRentalDataContext/UserLink/UserLink_BookingLink" />
+      <nodes>
+        <classShapeMoniker Id="d7b90ef2-ab0f-4437-9298-204509e2ffc6" />
+        <classShapeMoniker Id="050f4fd1-be33-4f3b-a8b3-9d32c04c34a2" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

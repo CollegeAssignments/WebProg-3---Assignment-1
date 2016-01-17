@@ -125,4 +125,28 @@ public  class CommAgent
         {
         }
     }
+
+    public static void SendBookingConfirmationEmail(string userName, string userEmail)
+    {
+        try
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+
+            mail.IsBodyHtml = true;
+            mail.From = new MailAddress("info.rentacar1@gmail.com");
+            mail.To.Add(userEmail);
+            mail.Subject = "Rental Car Booking Confirmed";
+            mail.Body = "<div>Hello " + userName + "<br />Thank You for hiring a car with Rental Car!<br>We have recieved your payment.<br /><br />Thank you - Rental Car Team</div>";
+
+            SmtpServer.Port = 587;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("info.rentacar1@gmail.com", "Qwerty12480");
+            SmtpServer.EnableSsl = true;
+
+            SmtpServer.Send(mail);
+        }
+        catch (Exception ex)
+        {
+        }
+    }
 }

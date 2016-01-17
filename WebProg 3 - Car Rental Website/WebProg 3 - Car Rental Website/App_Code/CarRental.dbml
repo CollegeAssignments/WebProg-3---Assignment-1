@@ -11,7 +11,7 @@
       <Column Name="IsPaid" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
       <Column Name="BookingKey" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Association Name="User_Booking" Member="UserLink" ThisKey="UserID" OtherKey="UserID" Type="UserLink" IsForeignKey="true" />
+      <Association Name="UserLink_BookingLink" Member="UserLink" ThisKey="UserID" OtherKey="UserID" Type="UserLink" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.[User]" Member="UserLinks">
@@ -28,7 +28,7 @@
       <Column Name="Password" Type="System.String" DbType="Char(32)" CanBeNull="true" />
       <Column Name="DateReg" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="LicenseNum" Type="System.String" DbType="Char(20)" CanBeNull="true" />
-      <Association Name="User_Booking" Member="BookingLinks" ThisKey="UserID" OtherKey="UserID" Type="BookingLink" />
+      <Association Name="UserLink_BookingLink" Member="BookingLinks" ThisKey="UserID" OtherKey="UserID" Type="BookingLink" />
     </Type>
   </Table>
   <Table Name="dbo.Deals" Member="DealLinks">

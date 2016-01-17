@@ -71,6 +71,11 @@ public partial class Payment : System.Web.UI.Page
                     }
                 }
                 db.SubmitChanges();
+                // send email to the user
+                //UserLink user = db.UserLinks.SingleOrDefault(u => u.UserID == booking.UserID);
+                CommAgent.SendBookingConfirmationEmail(booking.UserLink.FName + " " + booking.UserLink.LName, booking.UserLink.Email);
+
+                Response.Redirect("home.aspx");
             }
         }
     }
