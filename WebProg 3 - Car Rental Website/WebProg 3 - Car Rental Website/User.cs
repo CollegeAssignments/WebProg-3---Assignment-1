@@ -32,6 +32,7 @@ namespace WebProg_3___Car_Rental_Website
         public string Password { get; set; }
         public Nullable<System.DateTime> DateReg { get; set; }
         public string LicenseNum { get; set; }
+        public string salt { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }

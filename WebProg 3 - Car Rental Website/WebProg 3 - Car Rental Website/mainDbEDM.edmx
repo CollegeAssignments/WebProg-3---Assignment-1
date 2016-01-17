@@ -14,6 +14,10 @@
           <Property Name="StartDate" Type="date" />
           <Property Name="EndDate" Type="date" />
           <Property Name="CarID" Type="int" />
+          <Property Name="DealID" Type="int" />
+          <Property Name="IsPaid" Type="bit" Nullable="false" />
+          <Property Name="Price" Type="smallmoney" Nullable="false" />
+          <Property Name="BookingKey" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Car">
           <Key>
@@ -26,6 +30,19 @@
           <Property Name="Price" Type="smallmoney" />
           <Property Name="Image" Type="nchar" MaxLength="30" />
           <Property Name="OwnerID" Type="int" />
+        </EntityType>
+        <EntityType Name="Deals">
+          <Key>
+            <PropertyRef Name="DealId" />
+          </Key>
+          <Property Name="DealId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DealName" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="DealDesc" Type="nchar" MaxLength="10" />
+          <Property Name="Discount" Type="int" Nullable="false" />
+          <Property Name="DealImage" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="DealKey" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LimitedDealCounter" Type="int" />
+          <Property Name="MinDays" Type="int" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -43,6 +60,7 @@
           <Property Name="Password" Type="char" MaxLength="32" />
           <Property Name="DateReg" Type="date" />
           <Property Name="LicenseNum" Type="char" MaxLength="20" />
+          <Property Name="salt" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="UserType">
           <Key>
@@ -116,6 +134,7 @@
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
@@ -150,7 +169,11 @@
           <Property Name="EndDate" Type="DateTime" Precision="0" />
           <Property Name="CarID" Type="Int32" />
           <NavigationProperty Name="Car" Relationship="Self.FK_Bookings_Car" FromRole="Bookings" ToRole="Car" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Bookings_User" FromRole="Bookings" ToRole="User" />
+          <Property Name="DealID" Type="Int32" />
+          <Property Name="IsPaid" Type="Boolean" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="10" Scale="4" />
+          <Property Name="BookingKey" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Model.FK_Bookings_User" FromRole="Booking" ToRole="User" />
         </EntityType>
         <EntityType Name="Car">
           <Key>
@@ -166,24 +189,13 @@
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Bookings_Car" FromRole="Car" ToRole="Bookings" />
           <NavigationProperty Name="Vehicle" Relationship="Self.FK_Car_Vechicle" FromRole="Car" ToRole="Vehicle" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="UserType">
           <Key>
-            <PropertyRef Name="UserID" />
+            <PropertyRef Name="UserTypeID" />
           </Key>
-          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="FName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="LName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="DOB" Type="DateTime" Precision="0" />
-          <Property Name="Email" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
-          <Property Name="UserType" Type="Int16" />
-          <Property Name="Password" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
-          <Property Name="DateReg" Type="DateTime" Precision="0" />
-          <Property Name="LicenseNum" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Bookings" Relationship="Self.FK_Bookings_User" FromRole="User" ToRole="Bookings" />
-          <NavigationProperty Name="UserType1" Relationship="Model.FK_User_UserType" FromRole="User" ToRole="UserType" />
+          <Property Name="UserTypeID" Type="Int16" Nullable="false" />
+          <Property Name="UserType1" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Model.FK_User_UserType" FromRole="UserType" ToRole="User" />
         </EntityType>
         <EntityType Name="Vehicle">
           <Key>
@@ -212,18 +224,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Bookings_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Bookings" Type="Self.Booking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="UserID" />
-            </Principal>
-            <Dependent Role="Bookings">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Car_Vechicle">
           <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
           <End Role="Car" Type="Self.Car" Multiplicity="*" />
@@ -239,34 +239,72 @@
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bookings" EntityType="Self.Booking" />
           <EntitySet Name="Cars" EntityType="Self.Car" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
           <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
           <AssociationSet Name="FK_Bookings_Car" Association="Self.FK_Bookings_Car">
             <End Role="Car" EntitySet="Cars" />
-            <End Role="Bookings" EntitySet="Bookings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Bookings_User" Association="Self.FK_Bookings_User">
-            <End Role="User" EntitySet="Users" />
             <End Role="Bookings" EntitySet="Bookings" />
           </AssociationSet>
           <AssociationSet Name="FK_Car_Vechicle" Association="Self.FK_Car_Vechicle">
             <End Role="Vehicle" EntitySet="Vehicles" />
             <End Role="Car" EntitySet="Cars" />
           </AssociationSet>
-          <EntitySet Name="UserTypes" EntityType="Model.UserType" />
+          <EntitySet Name="Deals" EntityType="Model.Deal" />
+          <EntitySet Name="Users" EntityType="Model.User" />
+          <AssociationSet Name="FK_Bookings_User" Association="Model.FK_Bookings_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Booking" EntitySet="Bookings" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_UserType" Association="Model.FK_User_UserType">
             <End Role="UserType" EntitySet="UserTypes" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="UserType">
+        <EntityType Name="Deal">
           <Key>
-            <PropertyRef Name="UserTypeID" />
+            <PropertyRef Name="DealId" />
           </Key>
-          <Property Name="UserTypeID" Type="Int16" Nullable="false" />
-          <Property Name="UserType1" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
-          <NavigationProperty Name="Users" Relationship="Model.FK_User_UserType" FromRole="UserType" ToRole="User" />
+          <Property Name="DealId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DealName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DealDesc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Discount" Type="Int32" Nullable="false" />
+          <Property Name="DealImage" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="DealKey" Type="Guid" Nullable="false" />
+          <Property Name="LimitedDealCounter" Type="Int32" />
+          <Property Name="MinDays" Type="Int32" />
         </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="FName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="LName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="UserType" Type="Int16" />
+          <Property Name="Password" Type="String" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Name="DateReg" Type="DateTime" Precision="0" />
+          <Property Name="LicenseNum" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="salt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bookings" Relationship="Model.FK_Bookings_User" FromRole="User" ToRole="Booking" />
+          <NavigationProperty Name="UserType1" Relationship="Model.FK_User_UserType" FromRole="User" ToRole="UserType" />
+        </EntityType>
+        <Association Name="FK_Bookings_User">
+          <End Type="Model.User" Role="User" Multiplicity="0..1" />
+          <End Type="Model.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_UserType">
           <End Type="Model.UserType" Role="UserType" Multiplicity="0..1" />
           <End Type="Model.User" Role="User" Multiplicity="*" />
@@ -288,6 +326,10 @@
           <EntitySetMapping Name="Bookings">
             <EntityTypeMapping TypeName="Model.Booking">
               <MappingFragment StoreEntitySet="Bookings">
+                <ScalarProperty Name="BookingKey" ColumnName="BookingKey" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsPaid" ColumnName="IsPaid" />
+                <ScalarProperty Name="DealID" ColumnName="DealID" />
                 <ScalarProperty Name="BookingID" ColumnName="BookingID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
@@ -309,21 +351,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="Model.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="FName" ColumnName="FName" />
-                <ScalarProperty Name="LName" ColumnName="LName" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="UserType" ColumnName="UserType" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="DateReg" ColumnName="DateReg" />
-                <ScalarProperty Name="LicenseNum" ColumnName="LicenseNum" />
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="Model.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="UserType1" ColumnName="UserType" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -342,11 +374,36 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserTypes">
-            <EntityTypeMapping TypeName="Model.UserType">
-              <MappingFragment StoreEntitySet="UserType">
-                <ScalarProperty Name="UserType1" ColumnName="UserType" />
-                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+          <EntitySetMapping Name="Deals">
+            <EntityTypeMapping TypeName="Model.Deal">
+              <MappingFragment StoreEntitySet="Deals">
+                <ScalarProperty Name="MinDays" ColumnName="MinDays" />
+                <ScalarProperty Name="LimitedDealCounter" ColumnName="LimitedDealCounter" />
+                <ScalarProperty Name="DealKey" ColumnName="DealKey" />
+                <ScalarProperty Name="DealImage" ColumnName="DealImage" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="DealDesc" ColumnName="DealDesc" />
+                <ScalarProperty Name="DealName" ColumnName="DealName" />
+                <ScalarProperty Name="DealId" ColumnName="DealId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Model.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="salt" ColumnName="salt" />
+                <ScalarProperty Name="LicenseNum" ColumnName="LicenseNum" />
+                <ScalarProperty Name="DateReg" ColumnName="DateReg" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

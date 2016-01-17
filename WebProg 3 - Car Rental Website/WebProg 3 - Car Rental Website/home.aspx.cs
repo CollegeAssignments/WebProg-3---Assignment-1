@@ -14,6 +14,7 @@ namespace WebProg_3___Car_Rental_Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
+<<<<<<< HEAD
             //Test query -- making sure all is wired up correctly
             //var query = from car in mainDB.Vehicles
             //            select new
@@ -28,6 +29,14 @@ namespace WebProg_3___Car_Rental_Website
             //    //tbxTest.Text = car.brand.ToString() + " " + car.model.ToString();
             //}
 
+=======
+            if(Session != null)
+            {
+                string fName = (string)Session["fName"];
+                tbxTest.Text = fName;
+            }
+            
+>>>>>>> master
         }
     }
 }

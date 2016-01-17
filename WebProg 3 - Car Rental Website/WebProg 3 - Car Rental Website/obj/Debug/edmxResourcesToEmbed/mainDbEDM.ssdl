@@ -37,7 +37,7 @@
       <PropertyRef Name="UserID" />
     </Key>
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserName" Type="nchar" MaxLength="30" />
+    <Property Name="UserName" Type="nchar" MaxLength="15" />
     <Property Name="FName" Type="nchar" MaxLength="20" />
     <Property Name="LName" Type="nchar" MaxLength="20" />
     <Property Name="Address" Type="nchar" MaxLength="50" />
@@ -45,9 +45,10 @@
     <Property Name="Email" Type="nchar" MaxLength="30" />
     <Property Name="Phone" Type="nchar" MaxLength="15" />
     <Property Name="UserType" Type="smallint" />
-    <Property Name="Password" Type="char" MaxLength="32" />
+    <Property Name="Password" Type="nchar" MaxLength="32" />
     <Property Name="DateReg" Type="date" />
     <Property Name="LicenseNum" Type="char" MaxLength="20" />
+    <Property Name="salt" Type="nchar" MaxLength="32" />
   </EntityType>
   <EntityType Name="UserType">
     <Key>

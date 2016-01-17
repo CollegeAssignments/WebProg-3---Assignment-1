@@ -1,0 +1,18 @@
+﻿body {
+}
+
+.main-reg-form{
+    margin-top:40px;
+    margin-bottom:40px;
+}
+.space-inputs{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+footer{
+    min-height:500px;
+    width:100%;
+    border-top:#e7e7e7 1px solid;
+    background-color:#FBFBFB;
+}

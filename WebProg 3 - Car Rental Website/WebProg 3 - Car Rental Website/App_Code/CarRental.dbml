@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="mainDatabase" Class="CarRentalDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\mainDatabase.mdf;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="mainDatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\mainDatabase.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="mainDatabaseConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Bookings" Member="BookingLinks">
     <Type Name="BookingLink">
       <Column Name="BookingID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -11,7 +11,7 @@
       <Column Name="IsPaid" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="Price" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
       <Column Name="BookingKey" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Association Name="User_BookingLink" Member="UserLink" ThisKey="UserID" OtherKey="UserID" Type="UserLink" IsForeignKey="true" />
+      <Association Name="User_Booking" Member="UserLink" ThisKey="UserID" OtherKey="UserID" Type="UserLink" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.[User]" Member="UserLinks">
@@ -28,7 +28,7 @@
       <Column Name="Password" Type="System.String" DbType="Char(32)" CanBeNull="true" />
       <Column Name="DateReg" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="LicenseNum" Type="System.String" DbType="Char(20)" CanBeNull="true" />
-      <Association Name="User_BookingLink" Member="BookingLinks" ThisKey="UserID" OtherKey="UserID" Type="BookingLink" />
+      <Association Name="User_Booking" Member="BookingLinks" ThisKey="UserID" OtherKey="UserID" Type="BookingLink" />
     </Type>
   </Table>
   <Table Name="dbo.Deals" Member="DealLinks">

@@ -25,7 +25,8 @@ public partial class Entities : DbContext
 
     public virtual DbSet<Booking> Bookings { get; set; }
     public virtual DbSet<Car> Cars { get; set; }
-    public virtual DbSet<User> Users { get; set; }
-    public virtual DbSet<Vehicle> Vehicles { get; set; }
     public virtual DbSet<UserType> UserTypes { get; set; }
+    public virtual DbSet<Vehicle> Vehicles { get; set; }
+    public virtual DbSet<Deal> Deals { get; set; }
+    public virtual DbSet<User> Users { get; set; }
 }

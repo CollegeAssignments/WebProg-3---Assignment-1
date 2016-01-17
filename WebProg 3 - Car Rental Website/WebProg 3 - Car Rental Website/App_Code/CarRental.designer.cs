@@ -335,7 +335,7 @@ public partial class BookingLink : INotifyPropertyChanging, INotifyPropertyChang
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserLink_BookingLink", Storage="_UserLink", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Booking", Storage="_UserLink", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
 	public UserLink UserLink
 	{
 		get
@@ -698,7 +698,7 @@ public partial class UserLink : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserLink_BookingLink", Storage="_BookingLinks", ThisKey="UserID", OtherKey="UserID")]
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Booking", Storage="_BookingLinks", ThisKey="UserID", OtherKey="UserID")]
 	public EntitySet<BookingLink> BookingLinks
 	{
 		get

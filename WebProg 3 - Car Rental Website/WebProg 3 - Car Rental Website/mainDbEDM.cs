@@ -17,6 +17,10 @@ public partial class Booking
     public Nullable<System.DateTime> StartDate { get; set; }
     public Nullable<System.DateTime> EndDate { get; set; }
     public Nullable<int> CarID { get; set; }
+    public Nullable<int> DealID { get; set; }
+    public bool IsPaid { get; set; }
+    public decimal Price { get; set; }
+    public System.Guid BookingKey { get; set; }
 
     public virtual Car Car { get; set; }
     public virtual User User { get; set; }
@@ -43,6 +47,18 @@ public partial class Car
     public virtual Vehicle Vehicle { get; set; }
 }
 
+public partial class Deal
+{
+    public int DealId { get; set; }
+    public string DealName { get; set; }
+    public string DealDesc { get; set; }
+    public int Discount { get; set; }
+    public string DealImage { get; set; }
+    public System.Guid DealKey { get; set; }
+    public Nullable<int> LimitedDealCounter { get; set; }
+    public Nullable<int> MinDays { get; set; }
+}
+
 public partial class User
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -63,6 +79,7 @@ public partial class User
     public string Password { get; set; }
     public Nullable<System.DateTime> DateReg { get; set; }
     public string LicenseNum { get; set; }
+    public string salt { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
     public virtual ICollection<Booking> Bookings { get; set; }
