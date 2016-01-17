@@ -104,7 +104,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="carList.aspx" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -142,6 +141,7 @@
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="css\styles.css" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="images\logo.png" />
     <Content Include="mainDbEDM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>mainDbEDM.edmx</DependentUpon>
@@ -215,13 +215,6 @@
     <Compile Include="Car.cs" />
     <Compile Include="CarBrand.cs">
       <DependentUpon>mainDbEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="carList.aspx.cs">
-      <DependentUpon>carList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="carList.aspx.designer.cs">
-      <DependentUpon>carList.aspx</DependentUpon>
     </Compile>
     <Compile Include="FuelType.cs">
       <DependentUpon>mainDbEDM.tt</DependentUpon>

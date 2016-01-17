@@ -3,23 +3,20 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <span style="font-size:1.5em;" class="glyphicon glyphicon-home" aria-hidden="true"></span>
-
-        <asp:Label ID="tbxTest" runat="server"></asp:Label>
-
-        <div class="find-cars-form col-xs-12 col-md-6">
-            <asp:Label runat="server">Pick Up Date</asp:Label>
-            <asp:TextBox ID="tbxPickUpDate" CssClass="form-control space-inputs"  runat="server" />
-            <asp:Label runat="server">Drop Off Date</asp:Label>
-            <asp:TextBox ID="tbxDropOffDate" CssClass="form-control space-inputs"  runat="server" />
-            <asp:Button ID="btnFindCars" Text="Find Cars" CssClass="btn btn-success pull-right space-inputs" OnClick="btnFindCars_Click" runat="server" />
+        <div class="col-xs-12 col-md-4">
+            <div class="panel panel-info">
+                <div class="panel-heading"><h4>Our price includes</h4></div>
+                <div class="panel-body">
+                        <ul>
+                            <li><i class='fa fa-check tick-icon'></i>Vat (Sales Tax)</li>
+                            <li><i class='fa fa-check tick-icon'></i>Unlimited Millage</li>
+                            <li><i class='fa fa-check tick-icon'></i>Third Party Cover</li>
+                            <li><i class='fa fa-check tick-icon'></i>Collision Damage Waiver</li>
+                            <li><i class='fa fa-check tick-icon'></i>Theft Protection</li>
+                        </ul>
+                </div>
+            </div>
         </div>
+        <div id="carListMain" class="col-xs-12 col-md-8" runat="server"></div>
     </div>
-
-    <script>
-        $(function() {
-            $("#<%= tbxPickUpDate.ClientID %>").datepicker();
-            $( "#<%= tbxDropOffDate.ClientID %>" ).datepicker();
-        });
-    </script>
 </asp:Content>
