@@ -60,15 +60,15 @@ public partial class Booking : System.Web.UI.Page
         {
             if (deal.LimitedDealCounter != null)
             {
-                totalPrice = totalPrice * deal.Discount / (decimal)100;
+                totalPrice = totalPrice - (totalPrice * deal.Discount / (decimal)100);
             }
             else if (deal.MinDays >= 0)// Fergal form end date - start date 
             {
-                totalPrice = totalPrice * deal.Discount / (decimal)100;
+                totalPrice = totalPrice - (totalPrice * deal.Discount / (decimal)100);
             }
-            
+
         }
-   
+
         return totalPrice;
     }
 }
