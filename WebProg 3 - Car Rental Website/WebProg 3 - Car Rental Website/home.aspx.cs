@@ -58,30 +58,61 @@ namespace WebProg_3___Car_Rental_Website
         {
             foreach (Car _car in cars)
             {
-                carListMain.Controls.Add(new Literal()
+                Panel headingDiv = new Panel();
+                headingDiv.CssClass = "panel-heading";
+                headingDiv.Controls.Add(new Literal()
                 {
-                    Text = "<div class='panel panel-primary'><div class='panel-heading'>"
-                                                                + _car.Brand + " "
-                                                                + _car.Model
-                                                                + "<span class='pull-right'>€"
-                                                                + _car.Price.ToString("F")
-                                                                + "/day</span></div><div class='panel-body'><div class='car-image col-xs-12 col-md-3 text-center'><img src='"
-                                                                + _car.Image
-                                                                + "'/></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-users fa-2x'><span class='car-panel-text'>"
-                                                                + _car.Seats
-                                                                + " Seats</span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-suitcase fa-2x'><span class='car-panel-text'>"
-                                                                + _car.Suitcases
-                                                                + " Suitcase(s) </span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-briefcase fa-2x'><span class='car-panel-text'>"
-                                                                + _car.Bags
-                                                                + " Bag(s)</span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-car fa-2x'><span class='car-panel-text'>"
-                                                                + _car.Doors
-                                                                + " Door</span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-cogs fa-2x'><span class='car-panel-text'>"
-                                                                + _car.Gearbox
-                                                                + "</span></i></div><div class='car-detail col-xs-12 col-md-3'><button id='"
-                                                                + _car.ID
-                                                                + "' class='btn btn-warning col-xs-12'>Book Me</button></div></div></div>"
+                    Text = _car.Brand + " " + _car.Model + "<span class='pull-right'>€"
+                            + _car.Price.ToString("F") + "/day</span>"
                 });
+
+                Panel bodyDiv = new Panel();
+                bodyDiv.CssClass = "panel-body";
+                bodyDiv.Controls.Add(new Literal()
+                {
+                    Text = "<div class='car-image col-xs-12 col-md-3 text-center'><img src='"
+                            + _car.Image
+                            + "'/></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-users fa-2x'><span class='car-panel-text'>"
+                            + _car.Seats
+                            + " Seats</span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-suitcase fa-2x'><span class='car-panel-text'>"
+                            + _car.Suitcases
+                            + " Suitcase(s) </span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-briefcase fa-2x'><span class='car-panel-text'>"
+                            + _car.Bags
+                            + " Bag(s)</span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-car fa-2x'><span class='car-panel-text'>"
+                            + _car.Doors
+                            + " Door</span></i></div><div class='car-detail col-xs-6 col-md-3'><i class='fa fa-cogs fa-2x'><span class='car-panel-text'>"
+                            + _car.Gearbox
+                            + "</span></i></div>"
+                });
+
+                Panel btnDiv = new Panel();
+                btnDiv.CssClass = "car-detail col-xs-12 col-md-3";
+
+                Button btn = new Button();
+                btn.ID = Convert.ToString(_car.ID);
+                btn.CssClass = "btn btn-warning col-xs-12";
+                btn.Text = "Book Me";
+                btn.Click += new EventHandler(BookMe_Click);
+                btnDiv.Controls.Add(btn);
+
+                bodyDiv.Controls.Add(btnDiv);
+
+                Panel outerDiv = new Panel();
+                outerDiv.CssClass = "panel panel-primary";
+                outerDiv.Controls.Add(headingDiv);
+                outerDiv.Controls.Add(bodyDiv);
+
+                carListMain.Controls.Add(outerDiv);
             }
+        }
+
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void BookMe_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("signIn.aspx");
         }
     }
 }
