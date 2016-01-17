@@ -7,28 +7,25 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebProg_3___Car_Rental_Website
+using System;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+
+public partial class Entities : DbContext
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Infrastructure;
-    
-    public partial class Entities : DbContext
+    public Entities()
+        : base("name=Entities")
     {
-        public Entities()
-            : base("name=Entities")
-        {
-        }
-    
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            throw new UnintentionalCodeFirstException();
-        }
-    
-        public virtual DbSet<Booking> Bookings { get; set; }
-        public virtual DbSet<Car> Cars { get; set; }
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<UserType> UserTypes { get; set; }
-        public virtual DbSet<Vehicle> Vehicles { get; set; }
     }
+
+    protected override void OnModelCreating(DbModelBuilder modelBuilder)
+    {
+        throw new UnintentionalCodeFirstException();
+    }
+
+    public virtual DbSet<Booking> Bookings { get; set; }
+    public virtual DbSet<Car> Cars { get; set; }
+    public virtual DbSet<User> Users { get; set; }
+    public virtual DbSet<Vehicle> Vehicles { get; set; }
+    public virtual DbSet<UserType> UserTypes { get; set; }
 }

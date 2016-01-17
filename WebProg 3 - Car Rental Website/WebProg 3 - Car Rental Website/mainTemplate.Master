@@ -20,10 +20,11 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
+        <asp:LinkButton runat="server" ID="link_deals" PostBackUrl="~/DealsPage.aspx" Text="DEALS"></asp:LinkButton>
+        <asp:LinkButton runat="server" ID="LinkButton1" PostBackUrl="~/Booking.aspx" Text="BOOKING"></asp:LinkButton>
     </div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
     </form>
 </body>
 </html>

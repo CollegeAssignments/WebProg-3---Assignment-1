@@ -22,6 +22,16 @@
     <Property Name="Image" Type="nchar" MaxLength="30" />
     <Property Name="OwnerID" Type="int" />
   </EntityType>
+  <EntityType Name="Deals">
+    <Key>
+      <PropertyRef Name="DealId" />
+    </Key>
+    <Property Name="DealId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DealName" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="DealDesc" Type="nchar" MaxLength="10" />
+    <Property Name="Discount" Type="int" Nullable="false" />
+    <Property Name="DealImage" Type="varchar" MaxLength="250" Nullable="false" />
+  </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="UserID" />
@@ -50,7 +60,7 @@
     <Key>
       <PropertyRef Name="VehicleID" />
     </Key>
-    <Property Name="VehicleID" Type="int" Nullable="false" />
+    <Property Name="VehicleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Brand" Type="char" MaxLength="20" />
     <Property Name="Model" Type="nchar" MaxLength="20" />
     <Property Name="Power" Type="int" />
@@ -111,6 +121,7 @@
   <EntityContainer Name="ModelStoreContainer">
     <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Car" EntityType="Self.Car" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Deals" EntityType="Self.Deals" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />

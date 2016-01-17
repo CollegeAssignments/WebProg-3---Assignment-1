@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="mainDatabase" Class="CarRentalDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\mainDatabase.mdf;Integrated Security=True;MultipleActiveResultSets=True;Application Name=EntityFramework" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="mainDatabaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Bookings" Member="BookingLinks">
+    <Type Name="BookingLink">
+      <Column Name="BookingID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="CarID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DealID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsPaid" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="SmallMoney NOT NULL" CanBeNull="false" />
+      <Column Name="BookingKey" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Association Name="User_BookingLink" Member="UserLink" ThisKey="UserID" OtherKey="UserID" Type="UserLink" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="UserLinks">
+    <Type Name="UserLink">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="FName" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="LName" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="Address" Type="System.String" DbType="NChar(50)" CanBeNull="true" />
+      <Column Name="DOB" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="Phone" Type="System.String" DbType="NChar(15)" CanBeNull="true" />
+      <Column Name="UserType" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Password" Type="System.String" DbType="Char(32)" CanBeNull="true" />
+      <Column Name="DateReg" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="LicenseNum" Type="System.String" DbType="Char(20)" CanBeNull="true" />
+      <Association Name="User_BookingLink" Member="BookingLinks" ThisKey="UserID" OtherKey="UserID" Type="BookingLink" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Deals" Member="DealLinks">
+    <Type Name="DealLink">
+      <Column Name="DealId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DealName" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="DealDesc" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Discount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DealImage" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="DealKey" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="LimitedDealCounter" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MinDays" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -7,3 +7,101 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
+public partial class Booking
+{
+    public int BookingID { get; set; }
+    public Nullable<int> UserID { get; set; }
+    public Nullable<System.DateTime> StartDate { get; set; }
+    public Nullable<System.DateTime> EndDate { get; set; }
+    public Nullable<int> CarID { get; set; }
+
+    public virtual Car Car { get; set; }
+    public virtual User User { get; set; }
+}
+
+public partial class Car
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Car()
+    {
+        this.Bookings = new HashSet<Booking>();
+    }
+
+    public int CarId { get; set; }
+    public Nullable<int> VehicleTypeID { get; set; }
+    public string RegNum { get; set; }
+    public Nullable<int> Millage { get; set; }
+    public Nullable<decimal> Price { get; set; }
+    public string Image { get; set; }
+    public Nullable<int> OwnerID { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Booking> Bookings { get; set; }
+    public virtual Vehicle Vehicle { get; set; }
+}
+
+public partial class User
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public User()
+    {
+        this.Bookings = new HashSet<Booking>();
+    }
+
+    public int UserID { get; set; }
+    public string UserName { get; set; }
+    public string FName { get; set; }
+    public string LName { get; set; }
+    public string Address { get; set; }
+    public Nullable<System.DateTime> DOB { get; set; }
+    public string Email { get; set; }
+    public string Phone { get; set; }
+    public Nullable<short> UserType { get; set; }
+    public string Password { get; set; }
+    public Nullable<System.DateTime> DateReg { get; set; }
+    public string LicenseNum { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Booking> Bookings { get; set; }
+    public virtual UserType UserType1 { get; set; }
+}
+
+public partial class UserType
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public UserType()
+    {
+        this.Users = new HashSet<User>();
+    }
+
+    public short UserTypeID { get; set; }
+    public string UserType1 { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<User> Users { get; set; }
+}
+
+public partial class Vehicle
+{
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Vehicle()
+    {
+        this.Cars = new HashSet<Car>();
+    }
+
+    public int VehicleID { get; set; }
+    public string Brand { get; set; }
+    public string Model { get; set; }
+    public Nullable<int> Power { get; set; }
+    public Nullable<short> Doors { get; set; }
+    public Nullable<int> Emission { get; set; }
+    public string FuelType { get; set; }
+    public string Gearbox { get; set; }
+    public Nullable<short> Seats { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ICollection<Car> Cars { get; set; }
+}

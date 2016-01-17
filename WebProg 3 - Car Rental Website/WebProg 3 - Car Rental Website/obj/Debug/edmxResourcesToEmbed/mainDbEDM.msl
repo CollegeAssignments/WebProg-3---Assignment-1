@@ -43,14 +43,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserTypes">
-      <EntityTypeMapping TypeName="Model.UserType">
-        <MappingFragment StoreEntitySet="UserType">
-          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
-          <ScalarProperty Name="UserType1" ColumnName="UserType" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Vehicles">
       <EntityTypeMapping TypeName="Model.Vehicle">
         <MappingFragment StoreEntitySet="Vehicle">
@@ -63,6 +55,25 @@
           <ScalarProperty Name="FuelType" ColumnName="FuelType" />
           <ScalarProperty Name="Gearbox" ColumnName="Gearbox" />
           <ScalarProperty Name="Seats" ColumnName="Seats" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserTypes">
+      <EntityTypeMapping TypeName="Model.UserType">
+        <MappingFragment StoreEntitySet="UserType">
+          <ScalarProperty Name="UserType1" ColumnName="UserType" />
+          <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Deals">
+      <EntityTypeMapping TypeName="Model.Deal">
+        <MappingFragment StoreEntitySet="Deals">
+          <ScalarProperty Name="DealImage" ColumnName="DealImage" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="DealDesc" ColumnName="DealDesc" />
+          <ScalarProperty Name="DealName" ColumnName="DealName" />
+          <ScalarProperty Name="DealId" ColumnName="DealId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
